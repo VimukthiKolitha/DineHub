@@ -1,0 +1,100 @@
+/* Container for the entire tutorial page */
+.tutorial-page {
+    font-family: 'Arial', sans-serif;
+    background: #f9f9f9;
+    min-height: 100vh;
+  }
+  
+  /* Hero section styles */
+  .tutorial-hero {
+    background: linear-gradient(135deg, #fceabb, #f8b500);
+    color: #fff;
+    text-align: center;
+    padding: 80px 20px;
+    margin-bottom: 40px;
+  }
+  
+  .tutorial-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+  }
+  
+  .tutorial-hero p {
+    font-size: 1.5rem;
+    margin: 0 auto;
+    max-width: 600px;
+  }
+  
+  /* Tutorials Section */
+  .tutorials-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px 40px;
+  }
+  
+  /* Each tutorial card */
+  .tutorial-card {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .tutorial-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .tutorial-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  /* Tutorial card inner info */
+  .tutorial-info {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .tutorial-info h3 {
+    margin: 10px 0;
+    color: #333;
+    font-size: 1.5rem;
+  }
+  
+  .tutorial-info p {
+    color: #666;
+    font-size: 1rem;
+    margin-bottom: 15px;
+  }
+  
+  /* Button style for the tutorial link */
+  .btn-tutorial {
+    display: inline-block;
+    background: #ff9a9e;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s ease;
+  }
+  
+  .btn-tutorial:hover {
+    background: #ff6f91;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .tutorials-section {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  
