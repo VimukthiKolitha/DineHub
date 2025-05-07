@@ -1,62 +1,132 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import './TutorialPage.css';
-import tutorial1 from '../assets/tutorial1.jpg'; 
-import tutorial2 from '../assets/tutorial2.jpg'; 
-import tutorial3 from '../assets/tutorial3.jpg';
 
 const TutorialPage = () => {
+  const [description, setDescription] = useState('');
+  const [video, setVideo] = useState(null);
+  const [posts, setPosts] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+
+  const fetchPosts = async () => {
+    const res = await axios.get('http://localhost:8080/api/posts');
+    setPosts(res.data.reverse()); // latest first
+  };
+
+  const handleUpload = async () => {
+    try {
+      if (video && video.duration > 30) {
+        alert("Video must be under 30 seconds.");
+        return;
+      }
+  
+      let videoUrl = null;
+  
+      if (video) {
+        const videoFormData = new FormData();
+        videoFormData.append("file", video);
+  
+        const videoUploadRes = await axios.post(
+          "http://localhost:8080/api/posts/upload",
+          videoFormData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        videoUrl = videoUploadRes.data;
+      }
+  
+      const currentUser = JSON.parse(localStorage.getItem("user"));
+      if (!currentUser || !currentUser.id) {
+        alert("User not logged in.");
+        return;
+      }
+  
+      const payload = {
+        userId: currentUser.id,
+        description,
+        videoUrl,
+        createdAt: new Date().toISOString(),
+      };
+  
+      await axios.post("http://localhost:8080/api/posts", payload);
+      fetchPosts();
+      setDescription('');
+      setVideo(null);
+      setShowModal(false);
+    } catch (err) {
+      console.error("Upload failed:", err);
+      alert("An error occurred during upload.");
+    }
+  };
+
   return (
     <div className="tutorial-page">
       <Navbar />
+
       <header className="tutorial-hero">
         <h1>Cooking Tutorials</h1>
-        <p>Learn new recipes and mastering techniques with our step‐by‐step guides.</p>
+        <p>Share your cooking videos.</p>
       </header>
-      <section className="tutorials-section">
-        <div className="tutorial-card">
-          <img src={tutorial1} alt="Mastering Pasta" />
-          <div className="tutorial-info">
-            <h3>Mastering Pasta</h3>
-            <p>Learn the art of making perfect pasta from scratch with expert tips.</p>
-            <a
-              href="https://youtu.be/mnnHFnh4y5M?si=cZEi2hZ83Gco9z_m"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-tutorial"
-            >
-              Watch Tutorial
-            </a>
+
+      <div className="post-feed">
+        {posts.map((post, index) => (
+          post.videoUrl && (
+            <div className="post" key={index}>
+              <p>{post.description}</p>
+              <video controls width="100%">
+                <source src={`http://localhost:8080${post.videoUrl}`} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          )
+        ))}
+      </div>
+
+      <button className="upload-fab" onClick={() => setShowModal(true)}>Upload Video</button>
+
+      {showModal && (
+        <div className="upload-modal">
+          <div className="upload-box">
+            <h3>Upload Video Tutorial</h3>
+            <textarea
+              placeholder="Description"
+              value={description}
+              onChange={e => setDescription(e.target.value)}
+            />
+            <input
+              type="file"
+              accept="video/*"
+              onChange={e => {
+                const file = e.target.files[0];
+                const videoElement = document.createElement("video");
+                videoElement.preload = "metadata";
+                videoElement.onloadedmetadata = () => {
+                  if (videoElement.duration > 30) {
+                    alert("Video too long. Max 30 seconds.");
+                  } else {
+                    setVideo(file);
+                  }
+                };
+                videoElement.src = URL.createObjectURL(file);
+              }}
+            />
+            <div className="upload-buttons">
+              <button onClick={handleUpload}>Post</button>
+              <button onClick={() => setShowModal(false)}>Cancel</button>
+            </div>
           </div>
         </div>
-        <div className="tutorial-card">
-          <img src={tutorial2} alt="Baking Basics" />
-          <div className="tutorial-info">
-            <h3>Baking Basics</h3>
-            <p>Discover the fundamentals of baking delicious breads and pastries.</p>
-            <a href="https://youtu.be/e8tymUqV2-4?si=HJ7YZ_vMCod7-g4C"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-tutorial">
-              Watch Tutorial
-            </a>
-          </div>
-        </div>
-        <div className="tutorial-card">
-          <img src={tutorial3} alt="Grilling Techniques" />
-          <div className="tutorial-info">
-            <h3>Grilling Techniques</h3>
-            <p>Explore grilling and techniques to create mouthwatering dishes.</p>
-            <a href="https://youtu.be/N28WPCVE1J0?si=a6gGBLXXYp6ND59C"
-             target="_blank"
-             rel="noopener noreferrer"
-              className="btn-tutorial">
-              Watch Tutorial
-            </a>
-          </div>
-        </div>
-      </section>
+      )}
+
       <Footer />
     </div>
   );

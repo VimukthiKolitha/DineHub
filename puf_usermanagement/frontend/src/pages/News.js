@@ -2,31 +2,37 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import './MyRecipes.css'; // We'll create this new CSS file
+import './News.css';
 
-const MyRecipes = () => {
+const News = () => {
+  const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [image, setImage] = useState(null);
-  const [posts, setPosts] = useState([]);
+  const [newsItems, setNewsItems] = useState([]);
   const [showModal, setShowModal] = useState(false);
-  const [expandedPostId, setExpandedPostId] = useState(null);
+  const [expandedItemId, setExpandedItemId] = useState(null);
 
   const formatDescription = (text) => {
     if (!text) return null;
     return text.split('\n').map((paragraph, index) => (
       <p key={index} style={{ marginBottom: '10px' }}>
-        {paragraph || <br />} {/* This handles empty lines */}
+        {paragraph || <br />}
       </p>
     ));
   };
 
   useEffect(() => {
-    fetchPosts();
+    fetchNewsItems();
   }, []);
 
-  const fetchPosts = async () => {
-    const res = await axios.get('http://localhost:8080/api/posts');
-    setPosts(res.data.reverse());
+  const fetchNewsItems = async () => {
+    try {
+      const res = await axios.get('http://localhost:8080/api/news');
+      console.log("Fetched all news items:", res.data);
+      setNewsItems(res.data.reverse());
+    } catch (error) {
+      console.error("Error fetching news items:", error);
+    }
   };
 
   const handleUpload = async () => {
@@ -38,7 +44,7 @@ const MyRecipes = () => {
         imageFormData.append("file", image);
   
         const imageUploadRes = await axios.post(
-          "http://localhost:8080/api/posts/upload",
+          "http://localhost:8080/api/news/upload",
           imageFormData,
           {
             headers: {
@@ -51,19 +57,21 @@ const MyRecipes = () => {
   
       const currentUser = JSON.parse(localStorage.getItem("user"));
       if (!currentUser || !currentUser.id) {
-        alert("User not logged in.");
+        alert("Please log in to add news.");
         return;
       }
   
       const payload = {
         userId: currentUser.id,
+        title,
         description,
         imageUrl,
         createdAt: new Date().toISOString(),
       };
   
-      await axios.post("http://localhost:8080/api/posts", payload);
-      fetchPosts();
+      await axios.post("http://localhost:8080/api/news", payload);
+      fetchNewsItems();
+      setTitle('');
       setDescription('');
       setImage(null);
       setShowModal(false);
@@ -73,48 +81,57 @@ const MyRecipes = () => {
     }
   };
 
-  const toggleDescription = (postId) => {
-    setExpandedPostId(expandedPostId === postId ? null : postId);
+  const toggleDescription = (itemId) => {
+    setExpandedItemId(expandedItemId === itemId ? null : itemId);
   };
 
   return (
-    <div className="my-recipes-page">
+    <div className="news-page">
       <Navbar />
 
-      <header className="recipes-hero">
-        <h1>My Recipes</h1>
-        <p>Share your delicious recipes.</p>
+      <header className="news-hero">
+        <h1>Food News</h1>
+        <p>Latest updates from the culinary world</p>
       </header>
       
-      <div className="recipes-grid">
-        {posts.filter(post => post.imageUrl).map((post) => (
+      <div className="news-grid">
+        {newsItems.filter(item => item.imageUrl).map((item) => (
           <div 
-            className={`recipe-card ${expandedPostId === post.id ? 'expanded' : ''}`}
-            key={post.id}
-            onClick={() => toggleDescription(post.id)}
+            className={`news-card ${expandedItemId === item.id ? 'expanded' : ''}`}
+            key={item.id}
+            onClick={() => toggleDescription(item.id)}
           >
             <div className="card-image">
-              <img src={`http://localhost:8080${post.imageUrl}`} alt="Recipe" />
+              <img src={`http://localhost:8080${item.imageUrl}`} alt="News" />
             </div>
-            {expandedPostId === post.id && (
+            <div className="card-title">{item.title}</div>
+            {expandedItemId === item.id && (
               <div className="card-description">
-                {formatDescription(post.description)}
+                {formatDescription(item.description)}
               </div>
             )}
           </div>
         ))}
       </div>
 
-      <button className="upload-fab" onClick={() => setShowModal(true)}>Upload Recipe</button>
+      <button className="add-news-btn" onClick={() => setShowModal(true)}>+</button>
 
       {showModal && (
-        <div className="upload-modal">
-          <div className="upload-box">
-            <h3>Upload Recipe</h3>
+        <div className="news-modal">
+          <div className="news-upload-box">
+            <h3>Add Food News</h3>
+            <input
+              type="text"
+              placeholder="Title"
+              value={title}
+              onChange={e => setTitle(e.target.value)}
+              required
+            />
             <textarea
               placeholder="Description"
               value={description}
               onChange={e => setDescription(e.target.value)}
+              required
             />
             <input 
               type="file" 
@@ -122,7 +139,7 @@ const MyRecipes = () => {
               onChange={e => setImage(e.target.files[0])} 
             />
             <div className="upload-buttons">
-              <button onClick={handleUpload}>Post</button>
+              <button onClick={handleUpload}>Post News</button>
               <button onClick={() => setShowModal(false)}>Cancel</button>
             </div>
           </div>
@@ -134,4 +151,4 @@ const MyRecipes = () => {
   );
 };
 
-export default MyRecipes;
+export default News;

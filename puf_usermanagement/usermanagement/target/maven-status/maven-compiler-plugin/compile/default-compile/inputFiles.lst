@@ -1,13 +1,22 @@
-D:\3Year first semester\Projects\PUF_project\puf_usermanagement\usermanagement\src\main\java\com\example\usermanagement\UsermanagementApplication.java
-D:\3Year first semester\Projects\PUF_project\puf_usermanagement\usermanagement\src\main\java\com\example\usermanagement\controller\UserController.java
-D:\3Year first semester\Projects\PUF_project\puf_usermanagement\usermanagement\src\main\java\com\example\usermanagement\model\Recipe.java
-D:\3Year first semester\Projects\PUF_project\puf_usermanagement\usermanagement\src\main\java\com\example\usermanagement\repository\RecipeRepository.java
-D:\3Year first semester\Projects\PUF_project\puf_usermanagement\usermanagement\src\main\java\com\example\usermanagement\model\User.java
-D:\3Year first semester\Projects\PUF_project\puf_usermanagement\usermanagement\src\main\java\com\example\usermanagement\service\ProgressService.java
-D:\3Year first semester\Projects\PUF_project\puf_usermanagement\usermanagement\src\main\java\com\example\usermanagement\controller\ProgressController.java
-D:\3Year first semester\Projects\PUF_project\puf_usermanagement\usermanagement\src\main\java\com\example\usermanagement\model\Progress.java
-D:\3Year first semester\Projects\PUF_project\puf_usermanagement\usermanagement\src\main\java\com\example\usermanagement\service\UserService.java
-D:\3Year first semester\Projects\PUF_project\puf_usermanagement\usermanagement\src\main\java\com\example\usermanagement\service\RecipeService.java
-D:\3Year first semester\Projects\PUF_project\puf_usermanagement\usermanagement\src\main\java\com\example\usermanagement\repository\ProgressRepository.java
-D:\3Year first semester\Projects\PUF_project\puf_usermanagement\usermanagement\src\main\java\com\example\usermanagement\controller\RecipeController.java
-D:\3Year first semester\Projects\PUF_project\puf_usermanagement\usermanagement\src\main\java\com\example\usermanagement\repository\UserRepository.java
+C:\Users\User\Desktop\paf project\puf_usermanagement\usermanagement\src\main\java\com\example\usermanagement\controller\UserController.java
+C:\Users\User\Desktop\paf project\puf_usermanagement\usermanagement\src\main\java\com\example\usermanagement\service\NewsService.java
+C:\Users\User\Desktop\paf project\puf_usermanagement\usermanagement\src\main\java\com\example\usermanagement\controller\ProgressController.java
+C:\Users\User\Desktop\paf project\puf_usermanagement\usermanagement\src\main\java\com\example\usermanagement\service\RecipeService.java
+C:\Users\User\Desktop\paf project\puf_usermanagement\usermanagement\src\main\java\com\example\usermanagement\repository\ProgressRepository.java
+C:\Users\User\Desktop\paf project\puf_usermanagement\usermanagement\src\main\java\com\example\usermanagement\repository\RecipeRepository.java
+C:\Users\User\Desktop\paf project\puf_usermanagement\usermanagement\src\main\java\com\example\usermanagement\repository\NewsRepository.java
+C:\Users\User\Desktop\paf project\puf_usermanagement\usermanagement\src\main\java\com\example\usermanagement\controller\PostController.java
+C:\Users\User\Desktop\paf project\puf_usermanagement\usermanagement\src\main\java\com\example\usermanagement\model\Progress.java
+C:\Users\User\Desktop\paf project\puf_usermanagement\usermanagement\src\main\java\com\example\usermanagement\model\User.java
+C:\Users\User\Desktop\paf project\puf_usermanagement\usermanagement\src\main\java\com\example\usermanagement\config\WebConfig.java
+C:\Users\User\Desktop\paf project\puf_usermanagement\usermanagement\src\main\java\com\example\usermanagement\model\Recipe.java
+C:\Users\User\Desktop\paf project\puf_usermanagement\usermanagement\src\main\java\com\example\usermanagement\controller\RecipeController.java
+C:\Users\User\Desktop\paf project\puf_usermanagement\usermanagement\src\main\java\com\example\usermanagement\service\PostService.java
+C:\Users\User\Desktop\paf project\puf_usermanagement\usermanagement\src\main\java\com\example\usermanagement\controller\NewsController.java
+C:\Users\User\Desktop\paf project\puf_usermanagement\usermanagement\src\main\java\com\example\usermanagement\service\UserService.java
+C:\Users\User\Desktop\paf project\puf_usermanagement\usermanagement\src\main\java\com\example\usermanagement\UsermanagementApplication.java
+C:\Users\User\Desktop\paf project\puf_usermanagement\usermanagement\src\main\java\com\example\usermanagement\model\Post.java
+C:\Users\User\Desktop\paf project\puf_usermanagement\usermanagement\src\main\java\com\example\usermanagement\repository\PostRepository.java
+C:\Users\User\Desktop\paf project\puf_usermanagement\usermanagement\src\main\java\com\example\usermanagement\repository\UserRepository.java
+C:\Users\User\Desktop\paf project\puf_usermanagement\usermanagement\src\main\java\com\example\usermanagement\model\News.java
+C:\Users\User\Desktop\paf project\puf_usermanagement\usermanagement\src\main\java\com\example\usermanagement\service\ProgressService.java
