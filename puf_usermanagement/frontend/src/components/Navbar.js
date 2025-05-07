@@ -57,13 +57,14 @@ const Navbar = () => {
       </div>
 
       <div className="nav-center">
-        <ul className="nav-links">
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/my-recipes" onClick={() => setDropdownOpen(false)}>Recipes</Link></li>
-          <li><Link to="/tutorial">Tutorials</Link></li>
-          <li><Link to="/community">Community</Link></li>
-          <li><Link to="/about">About Us</Link></li>
-        </ul>
+      <ul className="nav-links">
+  <li><Link to="/">Home</Link></li>
+  <li><Link to="/my-recipes" onClick={() => setDropdownOpen(false)}>Recipes</Link></li>
+  <li><Link to="/tutorial">Tutorials</Link></li>
+  <li><Link to="/community">Community</Link></li>
+  <li><Link to="/food-news">Food News</Link></li> {/* New tab */}
+  <li><Link to="/about">About Us</Link></li>
+</ul>
       </div>
 
       <div className="navbar-right">
@@ -80,14 +81,15 @@ const Navbar = () => {
               className="profile-icon"
               onClick={toggleDropdown}
             />
-            {dropdownOpen && (
-              <div className="dropdown-menu">
-                <span className="dropdown-user">👋 {currentUser.name || 'User'}</span>
-                <Link to="/profile" onClick={() => setDropdownOpen(false)}>Profile</Link>
-                <Link to="/settings" onClick={() => setDropdownOpen(false)}>Settings</Link>
-                <button onClick={handleLogout} className="btn-logout">Logout</button>
-              </div>
-            )}
+           {dropdownOpen && (
+               <div className="dropdown-menu">
+               <span className="dropdown-user">👋 {currentUser.name || 'User'}</span>
+              <Link to="/profile" onClick={() => setDropdownOpen(false)}>Profile</Link>
+              <Link to="/settings" onClick={() => setDropdownOpen(false)}>Settings</Link>
+              <Link to="/my-uploads" onClick={() => setDropdownOpen(false)}>Your Uploads</Link> {/* New Link */}
+             <button onClick={handleLogout} className="btn-logout">Logout</button>
+            </div>
+           )}
           </div>
         )}
       </div>

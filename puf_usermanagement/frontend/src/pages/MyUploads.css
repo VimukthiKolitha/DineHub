@@ -1,0 +1,149 @@
+.my-uploads-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .uploads-header {
+    text-align: center;
+    padding: 20px;
+    background-color: #f8f4e8;
+  }
+  
+  .uploads-header h2 {
+    color: #e67e22;
+    margin-bottom: 15px;
+  }
+  
+  .tabs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .tabs button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ddd;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .tabs button.active {
+    background-color: #e67e22;
+    color: white;
+  }
+  
+  .tabs button:hover {
+    background-color: #d35400;
+    color: white;
+  }
+  
+  .uploads-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    width: 100%;
+  }
+  
+  .no-uploads {
+    text-align: center;
+    color: #666;
+    font-size: 1.1rem;
+  }
+  
+  .upload-item {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .upload-item h3 {
+    color: #e67e22;
+    margin-bottom: 10px;
+  }
+  
+  .upload-item p {
+    color: #333;
+    line-height: 1.5;
+    margin-bottom: 15px;
+  }
+  
+  .media-container {
+    margin: 15px 0;
+  }
+  
+  .media-container img {
+    max-width: 100%;
+    border-radius: 5px;
+  }
+  
+  .edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .edit-form input,
+  .edit-form textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: inherit;
+  }
+  
+  .edit-form textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+  
+  .item-actions,
+  .edit-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+  }
+  
+  .edit-btn,
+  .delete-btn,
+  .save-btn,
+  .cancel-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .edit-btn,
+  .save-btn {
+    background-color: #3498db;
+    color: white;
+  }
+  
+  .edit-btn:hover,
+  .save-btn:hover {
+    background-color: #2980b9;
+  }
+  
+  .delete-btn {
+    background-color: #e74c3c;
+    color: white;
+  }
+  
+  .delete-btn:hover {
+    background-color: #c0392b;
+  }
+  
+  .cancel-btn {
+    background-color: #95a5a6;
+    color: white;
+  }
+  
+  .cancel-btn:hover {
+    background-color: #7f8c8d;
+  }

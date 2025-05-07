@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
 import HomePage from './pages/HomePage';
 import ProfilePage from './pages/ProfilePage';
 import Login from './components/Login';
@@ -13,6 +12,8 @@ import SettingsPage from './pages/SettingsPage';
 import AboutUsPage from './pages/AboutUsPage';
 import TutorialPage from './pages/TutorialPage';
 import ShareRecipes from './components/ShareRecipes';
+import MyUploads from './pages/MyUploads';
+import News from './pages/News'; // Add this import
 import './App.css';
 
 const App = () => {
@@ -31,6 +32,8 @@ const App = () => {
         <Route path="/tutorial" element={<TutorialPage />} />
         <Route path="/share-recipes" element={<ShareRecipes />} />
         <Route path="/community" element={<Community/>} />
+        <Route path="/my-uploads" element={<MyUploads />} />
+        <Route path="/food-news" element={<News />} /> {/* Add this route */}
       </Routes>
     </Router>
   );
